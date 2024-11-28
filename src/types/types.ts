@@ -9,7 +9,7 @@ export type Region =
 export interface Country {
   name: { common: string; official: string };
   population: number;
-  region: string;
+  region: Region;
   capital: string[];
   flags: { png: string; svg: string };
 }

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Country } from "../types/types";
 
 interface UseCountryState {
-  data: Country[] | null;
+  data: Country | null;
   loading: boolean;
   error: string | null;
 }
@@ -25,7 +25,7 @@ export const useCountry = (endpoint: string) => {
         }
 
         const result = await response.json();
-        const filteredData: Country[] = result.map((country: Country) => ({
+        const filteredData: Country = result.map((country: Country) => ({
           name: country.name,
           population: country.population,
           region: country.region,

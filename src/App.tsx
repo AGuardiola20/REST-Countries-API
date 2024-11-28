@@ -7,23 +7,66 @@ const Container = styled.div`
   height: 100vh;
 `;
 
+const Message = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.textSecondary};
+`;
+
+const ErrorMessage = styled(Message)`
+  color: ${({ theme }) => theme.error};
+`;
+
+const Spinner = styled.div`
+  border: 4px solid ${({ theme }) => theme.background};
+  border-top: 4px solid ${({ theme }) => theme.primary};
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+
+  @keyframes spin {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+`;
+
+const LoadingMessage = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+  font-size: 1rem;
+  font-weight: bold;
+  color: ${({ theme }) => theme.primary};
+`;
+
 function App() {
   const { data, error, loading } = useCountry("/alpha/USA");
 
-  // TODO: Mejorar el estilo de los estados de error y loading
-  if (loading) return <p>Cargando...</p>;
-  if (error) return <p>Error: {error}</p>;
-  if (!data || data.length === 0) return <p>No se encontraron datos.</p>;
+  console.log(data);
+
+  if (loading)
+    return (
+      <LoadingMessage>
+        <Spinner />
+        <p>Cargando datos...</p>
+      </LoadingMessage>
+    );
+  if (error) return <ErrorMessage>Error: {error}</ErrorMessage>;
 
   return (
     <Container>
-      <Card
-        name="Co"
-        capital="a"
-        imgSrc="sad"
-        region="Europe"
-        population={200}
-      />
+      <Card country={data} />
     </Container>
   );
 }

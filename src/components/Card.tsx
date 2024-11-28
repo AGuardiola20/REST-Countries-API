@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { Region } from "../types/types";
+import { Country } from "../types/types";
 
 const Container = styled.div`
   display: flex;
@@ -25,30 +25,29 @@ const Text = styled.p`
 `;
 
 type CardProps = {
-  imgSrc: string;
-  name: string;
-  population: number;
-  region: Region;
-  capital: string;
+  country: Country | null;
 };
 
-const Card = ({ capital, population, region, name, imgSrc }: CardProps) => {
+const Card = ({ country }: CardProps) => {
+  if (!country || !country.name || !country.name.common) {
+    return <Container>No country data available</Container>;
+  }
+
   return (
     <Container>
-      <img src={imgSrc} alt={`${name} flag image`} />
       <InfoContainer>
-        <Name>{name}</Name>
+        <Name>{country.name.common}</Name>
         <Text>
           <TitleText>Population: </TitleText>
-          {population}
+          {country.population}
         </Text>
         <Text>
           <TitleText>Region: </TitleText>
-          {region}
+          {country.region}
         </Text>
         <Text>
           <TitleText>Capital: </TitleText>
-          {capital}
+          {country.capital}
         </Text>
       </InfoContainer>
     </Container>
