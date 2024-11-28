@@ -1,7 +1,7 @@
 export const lightTheme = {
   background: "hsl(0, 0%, 98%)",
   text: "hsl(200, 15%, 8%)",
-  primary: "hsl(209, 23%, 22%)",
+  primary: "hsl(0, 0%, 100%)",
   backgroundInput: "hsl(0, 0%, 52%)",
 };
 

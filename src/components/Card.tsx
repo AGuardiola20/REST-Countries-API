@@ -4,6 +4,24 @@ import { Region } from "../types/types";
 const Container = styled.div`
   display: flex;
   flex-direction: column;
+  background-color: ${({ theme }) => theme.primary};
+  width: fit-content;
+`;
+
+const InfoContainer = styled.div`
+  padding: 1cap;
+`;
+const Name = styled.h2`
+  color: ${({ theme }) => theme.text};
+`;
+
+const TitleText = styled.span`
+  font-weight: 800;
+`;
+
+const Text = styled.p`
+  color: ${({ theme }) => theme.text};
+  font-weight: 300;
 `;
 
 type CardProps = {
@@ -18,21 +36,21 @@ const Card = ({ capital, population, region, name, imgSrc }: CardProps) => {
   return (
     <Container>
       <img src={imgSrc} alt={`${name} flag image`} />
-      <div>
-        <h2>{name}</h2>
-        <p>
-          <span>Population: </span>
+      <InfoContainer>
+        <Name>{name}</Name>
+        <Text>
+          <TitleText>Population: </TitleText>
           {population}
-        </p>
-        <p>
-          <span>Region: </span>
+        </Text>
+        <Text>
+          <TitleText>Region: </TitleText>
           {region}
-        </p>
-        <p>
-          <span>Capital: </span>
+        </Text>
+        <Text>
+          <TitleText>Capital: </TitleText>
           {capital}
-        </p>
-      </div>
+        </Text>
+      </InfoContainer>
     </Container>
   );
 };
