@@ -9,10 +9,12 @@ const Container = styled.div`
 `;
 
 const InfoContainer = styled.div`
-  padding: 1cap;
+  padding: 1rem;
+  max-width: fit-content;
 `;
 const Name = styled.h2`
   color: ${({ theme }) => theme.text};
+  font-size: 1.5rem;
 `;
 
 const TitleText = styled.span`
@@ -22,19 +24,17 @@ const TitleText = styled.span`
 const Text = styled.p`
   color: ${({ theme }) => theme.text};
   font-weight: 300;
+  margin: 1rem 0;
 `;
 
 type CardProps = {
-  country: Country | null;
+  country: Country;
 };
 
 const Card = ({ country }: CardProps) => {
-  if (!country || !country.name || !country.name.common) {
-    return <Container>No country data available</Container>;
-  }
-
   return (
     <Container>
+      <img src={country.flags.png} alt={`${country.name} flag`} />
       <InfoContainer>
         <Name>{country.name.common}</Name>
         <Text>

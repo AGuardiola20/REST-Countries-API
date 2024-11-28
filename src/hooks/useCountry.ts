@@ -25,13 +25,14 @@ export const useCountry = (endpoint: string) => {
         }
 
         const result = await response.json();
-        const filteredData: Country = result.map((country: Country) => ({
-          name: country.name,
-          population: country.population,
-          region: country.region,
-          capital: country.capital,
-          flags: country.flags,
-        }));
+
+        const filteredData: Country = {
+          name: result[0].name,
+          population: result[0].population,
+          region: result[0].region,
+          capital: result[0].capital,
+          flags: result[0].flags,
+        };
 
         setState({ data: filteredData, loading: false, error: null });
       } catch (error: unknown) {

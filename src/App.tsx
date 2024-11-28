@@ -53,8 +53,6 @@ const LoadingMessage = styled.div`
 function App() {
   const { data, error, loading } = useCountry("/alpha/USA");
 
-  console.log(data);
-
   if (loading)
     return (
       <LoadingMessage>
@@ -62,7 +60,10 @@ function App() {
         <p>Cargando datos...</p>
       </LoadingMessage>
     );
+
   if (error) return <ErrorMessage>Error: {error}</ErrorMessage>;
+
+  if (!data) return null;
 
   return (
     <Container>
