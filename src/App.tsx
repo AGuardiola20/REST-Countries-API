@@ -51,7 +51,7 @@ const LoadingMessage = styled.div`
 `;
 
 function App() {
-  const { data, error, loading } = useCountry("/alpha/USA");
+  const { data, error, loading } = useCountry("/alpha/CRC");
 
   if (loading)
     return (
